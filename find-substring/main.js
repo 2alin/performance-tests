@@ -65,10 +65,14 @@ function analysis(fn, title) {
   return mean;
 }
 
-document.querySelector('button').addEventListener('click', () => {
-  /***************
+const loading = document.querySelector('.loading');
+const resultsContainer = document.querySelector('.results');
+let results = [];
+
+function runTests() {
+  /****************
     Running Tests
-  ****************/
+   *****************/
 
   const tests = [
     [checkByMatch, 'match() [String]'],
@@ -77,20 +81,19 @@ document.querySelector('button').addEventListener('click', () => {
     [checkByIncludes, 'includes() [String]']
   ];
 
-  const results = tests.map(test => analysis(test[0], test[1]));
+  results = tests.map(test => analysis(test[0], test[1]));
 
-  /********************
-    Displaying results
-  *********************/
-  const fragment = document.createDocumentFragment();
-  const resultsContainer = document.querySelector('.results');
+  /****************
+    Displaying Tests
+   *****************/
 
   console.log('> Results');
 
+  const fragment = document.createDocumentFragment();
   for (let k = 0; k < tests.length; k++) {
-    const descriptionText = `${tests[k][1]}:`;
+    const descriptionText = `${tests[k][1]}`;
     const valueText = `${results[k]} ms`;
-    console.log(descriptionText + ' ' + valueText);
+    console.log(descriptionText + ': ' + valueText);
     const p = document.createElement('p');
     const description = document.createElement('span');
     const value = document.createElement('span');
@@ -102,4 +105,12 @@ document.querySelector('button').addEventListener('click', () => {
   }
   resultsContainer.innerHTML = '';
   resultsContainer.appendChild(fragment);
+
+  loading.classList.add('hidden');
+}
+
+document.querySelector('button').addEventListener('click', () => {
+  resultsContainer.innerHTML = '';
+  loading.classList.remove('hidden');
+  setTimeout(runTests, 50);
 });

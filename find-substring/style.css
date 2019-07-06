@@ -1,4 +1,50 @@
+:root {
+  --blue-color: rgb(7, 112, 182);
+}
+
+html {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+body {
+  padding: 0 1rem;
+}
+
 h1 {
-  font-size: 1.8rem;
-  text-align: center;
+  font-size: 1.2rem;
+}
+
+button {
+  background: white;
+  color: var(--blue-color);
+  border: 1px solid;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  background: var(--blue-color);
+  color: white;
+}
+
+button:active {
+  box-shadow: 0 0 2px var(--blue-color);
+}
+
+.loading {
+  display: block;
+}
+
+.loading.hidden {
+  display: none;
+}
+
+.results span {
+  display: inline-block;
+}
+
+.results span:first-child {
+  width: 10rem;
 }
