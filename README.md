@@ -1,2 +1,2 @@
 # performance-tests
-testing performance of different js methods
+A series of tests to compare the performance of some JS methods under certain circumstances.
